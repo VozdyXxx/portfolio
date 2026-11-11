@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prügivedu Tallinnas — kiire äravedu (mustand)</title>
+<meta name="description" content="Prügi, vana mööbli ja ehitusprahi äravedu Tallinnas ja Harjumaal. Täna või homme, fikseeritud hind.">
+<meta name="theme-color" content="#0F3D2E">
+<style>
+:root{--g:#0F3D2E;--g2:#14533F;--lime:#C6F432;--ink:#0B1A14;--paper:#F3F6F2;--mute:#4A5A52;--line:#D6DED8;--white:#fff;--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--lime);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1100px,100% - 32px);margin-inline:auto}
+.note{background:var(--ink);color:#C9D3CD;font-size:13px;text-align:center;padding:7px 12px}
+/* header with big call button */
+.top{position:sticky;top:0;z-index:5;background:var(--g);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:12px;min-height:64px}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;margin-right:auto;display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo i{width:26px;height:26px;border-radius:7px;background:var(--lime);display:inline-block;position:relative}
+.logo i::after{content:'';position:absolute;inset:7px 6px 6px;border:2.5px solid var(--g);border-top-width:4px;border-radius:2px}
+.lang{display:flex;border:1.5px solid rgb(255 255 255 / .35);border-radius:10px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;font:700 14px system-ui;padding:8px 10px;cursor:pointer;min-width:44px;min-height:40px}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--g)}
+.call{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;border-radius:12px;padding:0 16px;min-height:48px;white-space:nowrap}
+.call svg{width:20px;height:20px}
+@media(max-width:520px){.call span{display:none}.call{padding:0 14px}}
+/* hero */
+.hero{background:var(--g);color:#fff;padding:28px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start}
+.hero h1{font-size:clamp(30px,8.4vw,60px);overflow-wrap:break-word;line-height:1;letter-spacing:-.035em;font-weight:850}
+.hero h1 mark{background:var(--lime);color:var(--ink);padding:0 .12em;border-radius:6px}
+.hero p{font-size:19px;color:#D6E5DC;margin:16px 0 22px;max-width:30em}
+.ticks{list-style:none;display:grid;gap:8px}
+.ticks li{display:flex;gap:10px;align-items:center;font-weight:600}
+.ticks li::before{content:'';flex:none;width:22px;height:22px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='%230B1A14' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.form{background:var(--white);color:var(--ink);border-radius:20px;padding:20px;display:grid;gap:10px;box-shadow:0 30px 60px -30px rgb(0 0 0 / .5)}
+.form h2{font-size:21px;letter-spacing:-.02em}
+.form small{color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:2px solid var(--line);border-radius:22px;padding:8px 12px;font-weight:600;font-size:15px;cursor:pointer;min-height:40px;display:inline-flex;align-items:center}
+.chips input:checked+label{border-color:var(--g);background:#E3F5D5}
+.chips input:focus-visible+label{outline:3px solid var(--g);outline-offset:2px}
+.form input[type=tel],.form input[type=text]{min-height:52px;border:2px solid var(--line);border-radius:12px;padding:0 14px;font:500 17px system-ui;width:100%}
+.form input:focus{outline:none;border-color:var(--g)}
+.send{min-height:54px;border:0;border-radius:12px;background:var(--g);color:#fff;font:800 17px system-ui;cursor:pointer}
+.send:active{transform:scale(.98)}
+.ok{display:none;background:#E3F5D5;border-radius:12px;padding:12px;font-weight:700}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+/* sections */
+section.s{padding:56px 0}
+.s h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.03em;line-height:1.05;margin-bottom:18px}
+.adv{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.adv div{background:var(--white);border-radius:16px;padding:18px}
+.adv b{display:block;font-size:30px;font-weight:850;letter-spacing:-.03em;color:var(--g)}
+.adv span{color:var(--mute);font-size:15px}
+@media(max-width:860px){.adv{grid-template-columns:1fr 1fr}}
+table{width:100%;border-collapse:collapse;background:var(--white);border-radius:16px;overflow:hidden}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line)}
+th{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);background:#E9EFEA}
+td:last-child,th:last-child{text-align:right;white-space:nowrap;font-weight:700}
+tr:last-child td{border-bottom:0}
+.faq details{background:var(--white);border-radius:14px;margin-bottom:8px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 44px 16px 16px;font-weight:700;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--g);transition:transform .2s var(--ease)}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq p{padding:0 16px 16px;color:var(--mute)}
+.cta{background:var(--g);color:#fff;border-radius:24px;padding:32px 24px;text-align:center}
+.cta p{color:#D6E5DC;margin:8px 0 18px}
+footer{padding:28px 0 40px;color:var(--mute);font-size:14px}
+[data-ru]{display:none}
+html[lang=ru] [data-et]{display:none}
+html[lang=ru] [data-ru]{display:revert}
+</style>
+</head>
+<body>
+<div class="note"><span data-et>Mustand: tekstid, hinnad ja telefon on näidisena.</span><span data-ru>Черновик: тексты, цены и телефон — пример.</span></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#"><i aria-hidden="true"></i>Prügivedu</a>
+    <div class="lang" role="group" aria-label="Keel / Язык"><button type="button" data-l="et" aria-pressed="true">ET</button><button type="button" data-l="ru" aria-pressed="false">RU</button></div>
+    <a class="call" href="tel:+3725000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span>+372 5000 0000</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1><span data-et>Prügi ja vana mööbel <mark>minema täna</mark></span><span data-ru>Вывезем мусор и мебель <mark>уже сегодня</mark></span></h1>
+      <p><span data-et>Tallinn ja Harjumaa. Tuleme kokkulepitud ajal, laadime ise ja viime ära. Hind on teada enne tööd.</span><span data-ru>Таллинн и Харьюмаа. Приедем в оговорённое время, сами загрузим и вывезем. Цену называем до начала работ.</span></p>
+      <ul class="ticks">
+        <li><span data-et>Kohale 2–4 tunniga</span><span data-ru>Приезд за 2–4 часа</span></li>
+        <li><span data-et>Laadijad ja kandmine hinna sees</span><span data-ru>Грузчики и вынос включены в цену</span></li>
+        <li><span data-et>Utiliseerimine litsentsiga jaamas</span><span data-ru>Утилизация на лицензированной станции</span></li>
+      </ul>
+    </div>
+    <form class="form" id="lead">
+      <h2><span data-et>Küsi hinda 1 minutiga</span><span data-ru>Узнать цену за 1 минуту</span></h2>
+      <small><span data-et>Mida on vaja ära viia?</span><span data-ru>Что нужно вывезти?</span></small>
+      <div class="chips">
+        <input type="checkbox" id="k1" checked><label for="k1"><span data-et>Olmeprügi</span><span data-ru>Бытовой мусор</span></label>
+        <input type="checkbox" id="k2"><label for="k2"><span data-et>Mööbel</span><span data-ru>Мебель</span></label>
+        <input type="checkbox" id="k3"><label for="k3"><span data-et>Ehitusprügi</span><span data-ru>Строймусор</span></label>
+        <input type="checkbox" id="k4"><label for="k4"><span data-et>Kodumasinad</span><span data-ru>Техника</span></label>
+      </div>
+      <input type="text" name="name" autocomplete="name" placeholder="Nimi / Имя" aria-label="Nimi / Имя">
+      <input type="tel" name="tel" autocomplete="tel" required placeholder="+372" aria-label="Telefon / Телефон">
+      <button class="send" type="submit"><span data-et>Helistage mulle tagasi</span><span data-ru>Перезвоните мне</span></button>
+      <div class="ok" id="ok" role="status"><span data-et>Aitäh! Helistame 15 minuti jooksul. (Mustand: vormi ei saadeta.)</span><span data-ru>Спасибо! Перезвоним за 15 минут. (Черновик: форма не отправляется.)</span></div>
+    </form>
+  </div>
+</section>
+
+<section class="s wrap" aria-labelledby="h-adv">
+  <h2 id="h-adv"><span data-et>Miks meie</span><span data-ru>Почему мы</span></h2>
+  <div class="adv">
+    <div><b>2–4 h</b><span data-et>kohalejõudmine</span><span data-ru>до приезда</span></div>
+    <div><b>0 €</b><span data-et>lisatasu kandmise eest</span><span data-ru>доплат за вынос</span></div>
+    <div><b>7/7</b><span data-et>ka nädalavahetusel</span><span data-ru>и в выходные</span></div>
+    <div><b>Arve</b><span data-et>ettevõtetele ja eraisikutele</span><span data-ru>для фирм и частных лиц</span></div>
+  </div>
+</section>
+
+<section class="s wrap" aria-labelledby="h-price">
+  <h2 id="h-price"><span data-et>Teenused ja hinnad</span><span data-ru>Услуги и цены</span></h2>
+  <table>
+    <thead><tr><th><span data-et>Teenus</span><span data-ru>Услуга</span></th><th><span data-et>Hind</span><span data-ru>Цена</span></th></tr></thead>
+    <tbody>
+      <tr><td><span data-et>Väike koorem (kuni 2 m³)</span><span data-ru>Малый объём (до 2 м³)</span></td><td>alates 69 €</td></tr>
+      <tr><td><span data-et>Pool kaubikut (kuni 6 m³)</span><span data-ru>Полфургона (до 6 м³)</span></td><td>alates 129 €</td></tr>
+      <tr><td><span data-et>Täis kaubik (kuni 12 m³)</span><span data-ru>Полный фургон (до 12 м³)</span></td><td>alates 199 €</td></tr>
+      <tr><td><span data-et>Vana mööbli äravedu</span><span data-ru>Вывоз старой мебели</span></td><td>alates 49 €</td></tr>
+      <tr><td><span data-et>Ehitusprügi kottides</span><span data-ru>Строймусор в мешках</span></td><td>alates 3 € / kott</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="s wrap faq" aria-labelledby="h-faq">
+  <h2 id="h-faq">KKK / FAQ</h2>
+  <details><summary><span data-et>Kui kiiresti saate tulla?</span><span data-ru>Как быстро приедете?</span></summary><p><span data-et>Tavaliselt samal päeval, 2–4 tunni jooksul pärast kõnet.</span><span data-ru>Обычно в тот же день, через 2–4 часа после звонка.</span></p></details>
+  <details><summary><span data-et>Kas peame prügi ise alla tooma?</span><span data-ru>Нужно ли самим выносить мусор?</span></summary><p><span data-et>Ei. Laadijad kannavad ise, ka ilma liftita.</span><span data-ru>Нет. Грузчики вынесут сами, даже без лифта.</span></p></details>
+  <details><summary><span data-et>Kuidas hind kujuneb?</span><span data-ru>Как считается цена?</span></summary><p><span data-et>Mahu ja prügi liigi järgi. Täpse hinna ütleme foto või kõne põhjal enne tööd.</span><span data-ru>По объёму и типу мусора. Точную цену называем по фото или звонку до начала работ.</span></p></details>
+</section>
+
+<section class="s wrap">
+  <div class="cta">
+    <h2><span data-et>Helista, viime ära juba täna</span><span data-ru>Звоните, вывезем уже сегодня</span></h2>
+    <p><span data-et>Tallinn ja Harjumaa, 8:00–21:00</span><span data-ru>Таллинн и Харьюмаа, 8:00–21:00</span></p>
+    <a class="call" href="tel:+3725000000">+372 5000 0000</a>
+  </div>
+</section>
+</main>
+<footer class="wrap"><span data-et>Mustand, kogu sisu on näidis.</span><span data-ru>Черновик, всё содержимое — пример.</span></footer>
+
+<script>
+document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => {
+  document.documentElement.lang = b.dataset.l;
+  document.querySelectorAll('.lang button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+}));
+document.getElementById('lead').addEventListener('submit', (e) => { e.preventDefault(); document.getElementById('ok').style.display = 'block'; });
+</script>
+</body>
+</html>

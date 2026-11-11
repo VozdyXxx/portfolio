@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зерно — кав'ярня й обсмажувальня (демо)</title>
+<meta name="description" content="Демо-проєкт: сайт кав'ярні з меню, замовленням наперед і карткою лояльності.">
+<meta name="theme-color" content="#1F3D2B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1F3D2B;--g2:#27503A;--g3:#346A4C;--cr:#F1E9D6;--cr2:#D9CFB8;--o:#E8743B;--o-ink:#2A1205;--ink:#13241A;--ease:cubic-bezier(.16,1,.3,1);--disp:'Unbounded',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font:17px/1.55 Onest,system-ui,sans-serif;color:var(--cr);background:var(--g)}
+::selection{background:var(--o);color:var(--o-ink)}
+:focus-visible{outline:3px solid var(--o);outline-offset:3px;border-radius:8px}
+a{color:inherit}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.demo{background:var(--ink);color:var(--cr2);text-align:center;font-size:13px;padding:7px 16px}
+.demo a{color:var(--o)}
+.nav{display:flex;align-items:center;gap:22px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;font:900 22px var(--disp);text-decoration:none;margin-right:auto}
+.brand svg{width:34px;height:34px}
+.nav nav{display:flex;gap:22px;font-weight:600;font-size:15px}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1;color:#FFB07A}
+@media(max-width:760px){.nav nav{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:26px;border:0;background:var(--o);color:var(--o-ink);font:700 16px Onest,sans-serif;text-decoration:none;cursor:pointer;transition:transform .2s var(--ease),filter .2s}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:scale(.97)}
+.btn-line{background:transparent;color:var(--cr);box-shadow:inset 0 0 0 2px var(--cr)}
+.btn-sm{min-height:44px;padding:0 18px;font-size:15px}
+
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;padding:36px 0 80px}
+.hero h1{font:900 clamp(46px,8vw,118px)/.9 var(--disp);letter-spacing:-.04em}
+.hero h1 span{color:var(--o)}
+.hero p{font-size:20px;opacity:.9;margin:24px 0 30px;max-width:28em}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.ticket{position:relative;background:var(--cr);color:var(--ink);border-radius:22px;padding:24px;transform:rotate(2.5deg);box-shadow:0 30px 50px -25px rgb(0 0 0 / .6)}
+.ticket::before,.ticket::after{content:'';position:absolute;top:58%;width:22px;height:22px;border-radius:50%;background:var(--g)}
+.ticket::before{left:-11px}.ticket::after{right:-11px}
+.ticket small{font-size:13px;font-weight:600;color:#5A5444;text-transform:uppercase;letter-spacing:.08em}
+.ticket .t{font:900 64px/1 var(--disp);letter-spacing:-.04em;margin:6px 0}
+.ticket .line{border-top:2px dashed #B9AE95;margin:18px 0 14px}
+.ticket ul{list-style:none;display:grid;gap:4px;font-size:15px}
+.ticket li{display:flex;justify-content:space-between}
+.ticket .st{display:inline-flex;gap:8px;align-items:center;margin-top:14px;font-weight:700;font-size:14px;color:var(--g)}
+.ticket .st i{width:10px;height:10px;border-radius:50%;background:#2E9D5B;box-shadow:0 0 0 4px rgb(46 157 91 / .2)}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:10px}.ticket{max-width:360px;transform:rotate(1.5deg)}}
+
+section.s{padding:72px 0}
+.s h2{font:900 clamp(34px,5vw,64px)/1 var(--disp);letter-spacing:-.03em;margin-bottom:14px}
+.s .lead{opacity:.85;max-width:34em;margin-bottom:28px}
+
+/* menu + cart */
+.order{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
+.cats{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.cat{min-height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--g2);color:var(--cr);font:600 15px Onest,sans-serif;cursor:pointer}
+.cat[aria-selected="true"]{background:var(--cr);color:var(--ink)}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.item{background:var(--g2);border-radius:20px;padding:18px;display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center}
+.item svg{width:56px;height:56px}
+.item b{display:block;font-size:18px}
+.item span{font-size:14px;opacity:.8}
+.item .p{display:block;font-weight:700;color:#FFB07A;margin-top:2px;opacity:1;font-size:16px}
+.add{width:46px;height:46px;border-radius:50%;border:0;background:var(--cr);color:var(--ink);font:700 24px/1 Onest;cursor:pointer;transition:transform .2s var(--ease)}
+.add:active{transform:scale(.9)}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:36px;height:36px;border-radius:50%;border:0;background:var(--cr);color:var(--ink);font:700 18px Onest;cursor:pointer}
+.qty b{min-width:18px;text-align:center}
+@media(max-width:640px){.menu{grid-template-columns:1fr}}
+.cart{position:sticky;top:16px;background:var(--cr);color:var(--ink);border-radius:24px;padding:20px}
+.cart h3{font:700 20px var(--disp);margin-bottom:12px}
+.lines{display:grid;gap:8px;margin-bottom:14px;min-height:40px}
+.lines div{display:flex;justify-content:space-between;font-size:15px}
+.empty{font-size:15px;color:#5A5444}
+.pick{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 14px}
+.pick button{min-height:44px;border-radius:12px;border:2px solid #CFC3A8;background:transparent;font:600 14px Onest;cursor:pointer;color:var(--ink)}
+.pick button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--cr)}
+.cart .lbl{font-size:13px;font-weight:600;color:#5A5444;text-transform:uppercase;letter-spacing:.06em}
+.sum{display:flex;justify-content:space-between;align-items:baseline;border-top:2px dashed #B9AE95;padding-top:12px;margin-bottom:14px}
+.sum b{font:900 32px var(--disp);letter-spacing:-.03em}
+.cart .btn{width:100%}
+.cart .btn:disabled{opacity:.5;cursor:not-allowed}
+.ok{display:none;margin-top:12px;padding:14px;border-radius:14px;background:#DDEFE2;color:#123A22;font-weight:600;font-size:15px}
+@media(max-width:900px){.order{grid-template-columns:1fr}.cart{position:static}}
+
+/* loyalty */
+.loyal{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:var(--g2);border-radius:28px;padding:36px}
+.cups{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cup{aspect-ratio:1;border-radius:20px;border:2px dashed rgb(241 233 214 / .45);display:grid;place-items:center}
+.cup svg{width:48%;height:48%;opacity:.35}
+.cup.on{border:0;background:var(--cr)}
+.cup.on svg{opacity:1}
+.cup.free{border:0;background:var(--o)}
+.cup.free span{font:900 15px var(--disp);color:var(--o-ink);text-align:center}
+@media(max-width:820px){.loyal{grid-template-columns:1fr;padding:24px}}
+
+/* beans */
+.beans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bag{background:var(--cr);color:var(--ink);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.bag .origin{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A4A1E}
+.bag b{font:700 22px var(--disp)}
+.bag p{font-size:15px;color:#3E3A2E;flex:1}
+.notes{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+.notes span{font-size:13px;padding:4px 10px;border-radius:12px;background:#E5DAC0}
+.bag .pr{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+@media(max-width:900px){.beans{grid-template-columns:1fr}}
+
+.visit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.visit div{border-top:2px solid rgb(241 233 214 / .3);padding-top:14px}
+.visit b{display:block;font:700 18px var(--disp);margin-bottom:6px}
+@media(max-width:720px){.visit{grid-template-columns:1fr}}
+footer{padding:40px 0 60px;opacity:.7;font-size:14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-проєкт студії <a href="../">«Пілот»</a>. Заклад і ціни вигадані.</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cup" viewBox="0 0 48 48"><path d="M8 18h26v10a12 12 0 0 1-12 12h-2A12 12 0 0 1 8 28z" fill="currentColor"/><path d="M34 21h3a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 6c0 3-2 3-2 6M22 6c0 3-2 3-2 6M28 6c0 3-2 3-2 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+  <symbol id="ice" viewBox="0 0 48 48"><path d="M12 10h24l-3 32H15z" fill="currentColor"/><rect x="17" y="18" width="6" height="6" rx="1.5" fill="#1F3D2B" opacity=".35"/><rect x="24" y="24" width="6" height="6" rx="1.5" fill="#1F3D2B" opacity=".35"/><path d="M26 10 30 2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="bun" viewBox="0 0 48 48"><path d="M6 30c0-9 8-16 18-16s18 7 18 16c0 4-3 6-7 6H13c-4 0-7-2-7-6z" fill="currentColor"/><path d="M15 22c3 3 3 7 1 10M24 18c3 4 3 9 0 13M33 22c-3 3-3 7-1 10" stroke="#1F3D2B" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".4"/></symbol>
+</svg>
+
+<header class="wrap nav">
+  <a class="brand" href="#top"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="17" fill="#E8743B"/><path d="M17 7c-5 4-5 16 0 20M17 7c5 4 5 16 0 20" stroke="#2A1205" stroke-width="2.4" fill="none"/></svg>Зерно</a>
+  <nav aria-label="Розділи"><a href="#menu">Меню</a><a href="#loyal">Бонуси</a><a href="#beans">Зерно додому</a><a href="#visit">Де ми</a></nav>
+  <a class="btn btn-sm" href="#menu">Замовити наперед</a>
+</header>
+
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <h1>Кава, яка <span>чекає</span> на тебе</h1>
+    <p>Замов з телефона, забери без черги через 10 хвилин. Обсмажуємо зерно щотижня тут же, на Сумській.</p>
+    <div class="row"><a class="btn" href="#menu">Зібрати замовлення</a><a class="btn btn-line" href="#beans">Купити зерно</a></div>
+  </div>
+  <div class="ticket" aria-label="Приклад готового замовлення">
+    <small>Замовлення № 214 · готове о</small>
+    <div class="t">09:15</div>
+    <div class="line"></div>
+    <ul><li><span>Флет вайт</span><b>65 ₴</b></li><li><span>Круасан з мигдалем</span><b>70 ₴</b></li></ul>
+    <span class="st"><i></i>Бариста вже готує</span>
+  </div>
+</section>
+
+<section class="wrap s" id="menu" aria-labelledby="m-h">
+  <h2 id="m-h">Меню</h2>
+  <p class="lead">Додай напої й випічку, обери час — і просто забери на касі.</p>
+  <div class="order">
+    <div>
+      <div class="cats" role="tablist" aria-label="Категорії меню">
+        <button class="cat" role="tab" aria-selected="true" data-c="coffee">Кава</button>
+        <button class="cat" role="tab" aria-selected="false" data-c="cold">Холодне</button>
+        <button class="cat" role="tab" aria-selected="false" data-c="bake">Випічка</button>
+      </div>
+      <div class="menu" id="menuList" role="tabpanel"></div>
+    </div>
+    <aside class="cart" aria-labelledby="cart-h">
+      <h3 id="cart-h">Твоє замовлення</h3>
+      <div class="lines" id="lines" aria-live="polite"><p class="empty">Поки порожньо. Додай щось з меню.</p></div>
+      <span class="lbl">Заберу через</span>
+      <div class="pick" id="pick"><button type="button" data-m="10" aria-pressed="true">10 хв</button><button type="button" data-m="20" aria-pressed="false">20 хв</button><button type="button" data-m="30" aria-pressed="false">30 хв</button></div>
+      <div class="sum"><span>Разом</span><b id="total">0 ₴</b></div>
+      <button class="btn" id="go" disabled>Замовити</button>
+      <div class="ok" id="ok" role="status"></div>
+    </aside>
+  </div>
+</section>
+
+<section class="wrap s" id="loyal" aria-labelledby="l-h">
+  <div class="loyal">
+    <div>
+      <h2 id="l-h">Кожна 6-та кава безкоштовно</h2>
+      <p class="lead" style="margin-bottom:0">Чашки рахуються автоматично в Telegram-боті. Без пластикових карток і застосунків.</p>
+    </div>
+    <div class="cups" id="cups" role="img" aria-label="Картка лояльності: 3 з 5 чашок, шоста безкоштовна"></div>
+  </div>
+</section>
+
+<section class="wrap s" id="beans" aria-labelledby="b-h">
+  <h2 id="b-h">Зерно додому</h2>
+  <p class="lead">Обсмаження цього тижня. Мелемо під твою турку, гейзер чи кавомашину.</p>
+  <div class="beans">
+    <article class="bag"><span class="origin">Ефіопія · Іргачеффе</span><b>Квітковий ранок</b><div class="notes"><span>жасмин</span><span>бергамот</span><span>лимон</span></div><p>Легкий і яскравий, для фільтра та аеропресу.</p><div class="pr"><span>250 г</span><span>390 ₴</span></div></article>
+    <article class="bag"><span class="origin">Бразилія · Серрадо</span><b>Шоколадна класика</b><div class="notes"><span>какао</span><span>горіх</span><span>карамель</span></div><p>Щільний смак для еспресо та капучино.</p><div class="pr"><span>250 г</span><span>320 ₴</span></div></article>
+    <article class="bag"><span class="origin">Колумбія · Уїла</span><b>Червоне яблуко</b><div class="notes"><span>яблуко</span><span>мед</span><span>слива</span></div><p>Збалансований, однаково добрий у будь-якому способі.</p><div class="pr"><span>250 г</span><span>360 ₴</span></div></article>
+  </div>
+</section>
+
+<section class="wrap s" id="visit" aria-labelledby="v-h">
+  <h2 id="v-h">Заходь</h2>
+  <div class="visit">
+    <div><b>Адреса</b>Харків, вул. Сумська (вигадана адреса для демо)</div>
+    <div><b>Години</b>Пн–Пт 7:30–21:00<br>Сб–Нд 9:00–21:00</div>
+    <div><b>Бронь столика</b>Через Telegram-бота або на касі</div>
+  </div>
+</section>
+</main>
+<footer class="wrap">Сайт зроблено студією <a href="../">«Пілот»</a> як демо-проєкт.</footer>
+
+<script>
+const M = {
+  coffee: [['flat', 'Флет вайт', 'подвійний еспресо, молоко', 65, 'cup'], ['raf', 'Раф гарбузовий', 'сезонний, кориця', 85, 'cup'], ['filter', 'Фільтр дня', 'Ефіопія, мита обробка', 55, 'cup'], ['capp', 'Капучино', 'класика, 250 мл', 60, 'cup']],
+  cold: [['ice', 'Айс латте', 'лід, молоко, еспресо', 75, 'ice'], ['tonic', 'Еспресо-тонік', 'тонік, апельсин', 80, 'ice'], ['lemon', 'Лимонад', 'малина, м\'ята', 70, 'ice']],
+  bake: [['crois', 'Круасан з мигдалем', 'випікаємо зранку', 70, 'bun'], ['cin', 'Синабон', 'кориця, крем-чиз', 75, 'bun'], ['cook', 'Печиво', 'шоколад, морська сіль', 40, 'bun']]
+};
+const ALL = Object.values(M).flat();
+const cart = {};
+let pickup = 10;
+const list = document.getElementById('menuList');
+const fmt = (n) => n.toLocaleString('uk-UA').replace(/ /g, ' ') + ' ₴';
+function renderMenu(c) {
+  document.querySelectorAll('.cat').forEach((b) => b.setAttribute('aria-selected', b.dataset.c === c));
+  list.innerHTML = M[c].map(([id, n, d, p, ic]) => `<div class="item"><svg style="color:#F1E9D6"><use href="#${ic}"/></svg><div><b>${n}</b><span>${d}</span><span class="p">${p} ₴</span></div>${cart[id]
+    ? `<div class="qty"><button aria-label="Менше: ${n}" data-dec="${id}">−</button><b>${cart[id]}</b><button aria-label="Більше: ${n}" data-inc="${id}">+</button></div>`
+    : `<button class="add" aria-label="Додати: ${n}" data-inc="${id}">+</button>`}</div>`).join('');
+}
+let cur = 'coffee';
+document.querySelectorAll('.cat').forEach((b) => b.addEventListener('click', () => { cur = b.dataset.c; renderMenu(cur); }));
+list.addEventListener('click', (e) => {
+  const inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]');
+  if (inc) cart[inc.dataset.inc] = (cart[inc.dataset.inc] || 0) + 1;
+  if (dec) { cart[dec.dataset.dec]--; if (cart[dec.dataset.dec] <= 0) delete cart[dec.dataset.dec]; }
+  if (inc || dec) { renderMenu(cur); renderCart(); }
+});
+function renderCart() {
+  const ids = Object.keys(cart);
+  const lines = document.getElementById('lines');
+  let total = 0;
+  lines.innerHTML = ids.length ? ids.map((id) => { const [, n, , p] = ALL.find((x) => x[0] === id); total += p * cart[id]; return `<div><span>${cart[id]} × ${n}</span><b>${fmt(p * cart[id])}</b></div>`; }).join('') : '<p class="empty">Поки порожньо. Додай щось з меню.</p>';
+  document.getElementById('total').textContent = fmt(total);
+  document.getElementById('go').disabled = !ids.length;
+}
+document.getElementById('pick').addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  pickup = +b.dataset.m;
+  document.querySelectorAll('#pick button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+});
+document.getElementById('go').addEventListener('click', () => {
+  const t = new Date(Date.now() + pickup * 60000);
+  const ok = document.getElementById('ok');
+  ok.textContent = `Прийнято. Забери о ${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')} на касі, назви номер 215. (Демо: замовлення нікуди не надсилається.)`;
+  ok.style.display = 'block';
+});
+document.getElementById('cups').innerHTML = [1, 2, 3, 4, 5].map((i) => `<div class="cup ${i <= 3 ? 'on' : ''}"><svg style="color:#1F3D2B"><use href="#cup"/></svg></div>`).join('') + '<div class="cup free"><span>6-та<br>в подарунок</span></div>';
+renderMenu(cur); renderCart();
+</script>
+</body>
+</html>

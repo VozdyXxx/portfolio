@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" id="tc" content="#E4E9F2">
+  <script>
+    // тема до первой отрисовки, чтобы не мигало
+    (function () {
+      var t = 'system';
+      try { t = localStorage.getItem('plan-theme') || 'system'; } catch (e) {}
+      var dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.getElementById('tc') && (document.getElementById('tc').content = dark ? '#0A0F1F' : '#E4E9F2');
+    })();
+  </script>
+  <title>План до мрії — демо</title>
+  <script type="module" crossorigin src="./assets/index-T0rBjk7n.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C4QRqOJV.css">
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
